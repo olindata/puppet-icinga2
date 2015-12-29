@@ -38,19 +38,19 @@ class icinga2::pnp4nagios::config inherits icinga2::pnp4nagios {
 
   exec { 'pnp_setup':
     path    => '/bin:/usr/bin:/sbin:/usr/sbin',
-    command => "wget https://github.com/Icinga/icingaweb2-module-pnp/archive/master.zip -O /usr/share/icingaweb2/modules/pnp.zip",
+    command => "/usr/bin/wget https://github.com/Icinga/icingaweb2-module-pnp/archive/master.zip -O /usr/share/icingaweb2/modules/pnp.zip",
     creates => "/usr/share/icingaweb2/modules/pnp.zip",
   } ->
 
   exec { 'pnp_extract':
     path    => '/bin:/usr/bin:/sbin:/usr/sbin',
-    command => "unzip /usr/share/icingaweb2/modules/pnp.zip -d /usr/share/icingaweb2/modules/",
+    command => "/usr/bin/unzip /usr/share/icingaweb2/modules/pnp.zip -d /usr/share/icingaweb2/modules/",
     creates => "/usr/share/icingaweb2/modules/pnp",
   } ->
   
   exec { 'pnp_move':
     path    => '/bin:/usr/bin:/sbin:/usr/sbin',
-    command => "mv /usr/share/icingaweb2/modules/icingaweb2-module-pnp-master /usr/share/icingaweb2/modules/pnp",
+    command => "/usr/bin/mv /usr/share/icingaweb2/modules/icingaweb2-module-pnp-master /usr/share/icingaweb2/modules/pnp",
     creates => "/usr/share/icingaweb2/modules/pnp",
   } ~>
 
