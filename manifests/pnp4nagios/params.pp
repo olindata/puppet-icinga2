@@ -1,4 +1,4 @@
-iclass icinga2::pnp4nagios::params {
+class icinga2::pnp4nagios::params {
   $package_name           = 'pnp4nagios'
   $package_ensure         = 'present'
   $service_name           = 'npcd'
