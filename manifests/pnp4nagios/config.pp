@@ -4,8 +4,7 @@ class icinga2::pnp4nagios::config inherits icinga2::pnp4nagios {
   $log_type = 'syslog'
   $debug_lvl = 1
 
-  file {$htpasswd_config:
-    path   => "$httpd_path/$htpasswd_config",
+  file { "$httpd_path/$htpasswd_config":
     ensure => $htpasswd_config_ensure,
     owner  => $htpasswd_user,
     group  => $htpasswd_group,
@@ -16,16 +15,15 @@ class icinga2::pnp4nagios::config inherits icinga2::pnp4nagios {
 
   file { '/etc/nagios/passwd':
     ensure  => file,
-    owner   => 'root',
-    group   => 'apache',
-    source  => "puppet:///modules/${module_name}/pnp/pnp_auth.txt",
+    owner   => $htpasswd_user,
+    group   => $htpasswd_group,
+    source  => "puppet:///modules/${module_name}/pnp/passwd.txt",
     notify  => Service['httpd'],
   }
 
-  file { 'npcdcfg':
-    name => '/etc/pnp4nagios/npcd.cfg',
-    owner => root,
-    group => root,
+  file { '/etc/pnp4nagios/npcd.cfg':
+    owner => $htpasswd_user,
+    group => $htpasswd_group,
     notify => Class[icinga2::pnp4nagios::service],
     content => template('icinga2/npcd.cfg.erb'),
   }
@@ -66,4 +64,5 @@ class icinga2::pnp4nagios::config inherits icinga2::pnp4nagios {
   }
 
 }
+
 
