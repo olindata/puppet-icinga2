@@ -1,4 +1,6 @@
-class icinga2::pnp4nagios::service inherits icinga2::pnp4nagios {
+class icinga2::pnp4nagios::service {
+  include icinga2::pnp4nagios
+
   if $service_manage == true {
     service {$service_name:
       ensure     => $service_ensure,
@@ -7,7 +9,6 @@ class icinga2::pnp4nagios::service inherits icinga2::pnp4nagios {
       hasstatus  => true,
       hasrestart => true,
     }
-
   }
 
 }
