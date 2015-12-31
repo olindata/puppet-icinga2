@@ -11,6 +11,7 @@ class icinga2::pnp4nagios::params {
   $htpasswd_config_ensure = 'present'
   $htpasswd_config_mode   = '0644'
   $httpd_path             = '/etc/httpd/conf.d'
+  $nagios_web_user        = 'nagiosadmin'
+  $nagios_web_pass        = 'nagios'
 }
-
 

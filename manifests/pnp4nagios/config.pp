@@ -17,8 +17,14 @@ class icinga2::pnp4nagios::config inherits icinga2::pnp4nagios {
     ensure  => file,
     owner   => $htpasswd_user,
     group   => $htpasswd_group,
-    source  => "puppet:///modules/${module_name}/pnp/passwd.txt",
     notify  => Service['httpd'],
+  }
+
+  exec { 'htpasswd':
+    path    => '/bin:/usr/bin:/sbin:/usr/sbin',
+    command => "htpasswd -db /etc/nagios/passwd $nagios_web_user $nagios_web_pass",
+    subscribe   => File["/etc/nagios/passwd"],
+    refreshonly => true
   }
 
   file { '/etc/pnp4nagios/npcd.cfg':
@@ -64,5 +70,6 @@ class icinga2::pnp4nagios::config inherits icinga2::pnp4nagios {
   }
 
 }
+
 
 

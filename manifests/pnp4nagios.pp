@@ -11,6 +11,8 @@ class icinga2::pnp4nagios (
   $htpasswd_config_ensure = $icinga2::pnp4nagios::params::htpasswd_config_ensure,
   $htpasswd_config_mode   = $icinga2::pnp4nagios::params::htpasswd_config_mode,
   $httpd_path             = $icinga2::pnp4nagios::params::httpd_path,
+  $nagios_web_user        = $icinga2::pnp4nagios::params::nagios_web_user,
+  $nagios_web_pass        = $icinga2::pnp4nagios::params::nagios_web_pass,
 ) inherits icinga2::pnp4nagios::params {
 
   # Validation
@@ -26,6 +28,8 @@ class icinga2::pnp4nagios (
   validate_string($htpasswd_config_ensure)
   validate_string($htpasswd_config_mode)
   validate_absolute_path($httpd_path)
+  validate_string($nagios_web_user)
+  validate_string($nagios_web_pass)
 
   anchor {'icinga2::pnp4nagios::begin':} ->
   class {'icinga2::pnp4nagios::install':} ->
@@ -34,4 +38,5 @@ class icinga2::pnp4nagios (
   anchor {'icinga2::pnp4nagios::end':}
 
 }
+
 
