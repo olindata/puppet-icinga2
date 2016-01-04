@@ -9,7 +9,7 @@ class icinga2::pnp4nagios::config inherits icinga2::pnp4nagios {
     owner  => $htpasswd_user,
     group  => $htpasswd_group,
     mode   => $htpasswd_config_mode,
-    source => "puppet:///modules/${module_name}/pnp/$htpasswd_config",
+    content => template('icinga2/pnp4nagios.conf.erb'),
     notify => Service['httpd'],
   }
 
