@@ -1,1 +1,0 @@
-nagiosadmin:$apr1$zM9FEamr$rFQlBm8uenm.oFA9mi8o90
