@@ -93,6 +93,18 @@ CentOS 5 provides PostgreSQL 9.1 by default, which was end-of-life'd in 2010. Wi
 
 ###General Usage
 
+####`icinga2::pnp4nagios`
+
+This define type add graphing to icinga using pnp4nagios package.
+
+Example usage:
+
+<pre>
+include icinga2::pnp4nagios
+</pre>
+
+It also add default timezone parameter to php (The value is true by default)
+
 ####`icinga2::conf`
 
 This defined type creates custom files in the `/etc/icinga2/conf.d` directory.
