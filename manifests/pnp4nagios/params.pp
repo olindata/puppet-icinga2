@@ -13,5 +13,6 @@ class icinga2::pnp4nagios::params {
   $httpd_path             = '/etc/httpd/conf.d'
   $nagios_web_user        = 'nagiosadmin'
   $nagios_web_pass        = 'nagios'
+  $manage_php_timezone    = true
 }
 

@@ -34,10 +34,12 @@ class icinga2::pnp4nagios::config inherits icinga2::pnp4nagios {
     content => template('icinga2/npcd.cfg.erb'),
   }
 
-  file_line{ 'date.timezone':
-    path => '/etc/php.ini',
-    line => "date.timezone = Europe/Amsterdam",
-    match => "^;date.timezone.*$",
+  if $manage_php_timezone == true {
+    file_line{ 'date.timezone':
+      path => '/etc/php.ini',
+      line => "date.timezone = Europe/Amsterdam",
+      match => "^;date.timezone.*$",
+    }
   }
 
   exec { 'pnp_setup':
