@@ -1,5 +1,4 @@
-class icinga2::pnp4nagios::service {
-  include icinga2::pnp4nagios
+class icinga2::pnp4nagios::service inherits icinga2::pnp4nagios::params {
 
   if $service_manage == true {
     service {$service_name:
