@@ -5,12 +5,12 @@ class icinga2::pnp4nagios::config inherits icinga2::pnp4nagios {
   $debug_lvl = 1
 
   file { "$httpd_path/$htpasswd_config":
-    ensure => $htpasswd_config_ensure,
-    owner  => $htpasswd_user,
-    group  => $htpasswd_group,
-    mode   => $htpasswd_config_mode,
+    ensure  => $htpasswd_config_ensure,
+    owner   => $htpasswd_user,
+    group   => $htpasswd_group,
+    mode    => $htpasswd_config_mode,
     content => template('icinga2/pnp4nagios.conf.erb'),
-    notify => Service['httpd'],
+    notify  => Service['httpd'],
   }
 
   file { '/etc/nagios/passwd':
@@ -21,23 +21,23 @@ class icinga2::pnp4nagios::config inherits icinga2::pnp4nagios {
   }
 
   exec { 'htpasswd':
-    path    => '/bin:/usr/bin:/sbin:/usr/sbin',
-    command => "htpasswd -db /etc/nagios/passwd $nagios_web_user $nagios_web_pass",
+    path        => '/bin:/usr/bin:/sbin:/usr/sbin',
+    command     => "htpasswd -db /etc/nagios/passwd $nagios_web_user $nagios_web_pass",
     subscribe   => File["/etc/nagios/passwd"],
     refreshonly => true
   }
 
   file { '/etc/pnp4nagios/npcd.cfg':
-    owner => $htpasswd_user,
-    group => $htpasswd_group,
-    notify => Class[icinga2::pnp4nagios::service],
+    owner   => $htpasswd_user,
+    group   => $htpasswd_group,
+    notify  => Class[icinga2::pnp4nagios::service],
     content => template('icinga2/npcd.cfg.erb'),
   }
 
   if $manage_php_timezone == true {
     file_line{ 'date.timezone':
-      path => '/etc/php.ini',
-      line => "date.timezone = Europe/Amsterdam",
+      path  => '/etc/php.ini',
+      line  => "date.timezone = Europe/Amsterdam",
       match => "^;date.timezone.*$",
     }
   }
