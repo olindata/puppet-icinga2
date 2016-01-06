@@ -1,4 +1,4 @@
-class icinga2::pnp4nagios::config inherits icinga2::pnp4nagios {
+class icinga2::pnp4nagios::config inherits icinga2::pnp4nagios::params {
 
   $monitoring_type = 'icinga'
   $log_type = 'syslog'
