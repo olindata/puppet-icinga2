@@ -13,7 +13,6 @@ class icinga2::pnp4nagios (
   $httpd_path             = $icinga2::pnp4nagios::params::httpd_path,
   $nagios_web_user        = $icinga2::pnp4nagios::params::nagios_web_user,
   $nagios_web_pass        = $icinga2::pnp4nagios::params::nagios_web_pass,
-  $manage_php_timezone    = $icinga2::pnp4nagios::params::manage_php_timezone,
   $manage_pkg_dependency  = $icinga2::pnp4nagios::params::manage_pkg_dependency,
 ) inherits icinga2::pnp4nagios::params {
 
@@ -32,7 +31,6 @@ class icinga2::pnp4nagios (
   validate_absolute_path($httpd_path)
   validate_string($nagios_web_user)
   validate_string($nagios_web_pass)
-  validate_bool($manage_php_timezone)
   validate_bool($manage_pkg_dependency)
 
   anchor {'icinga2::pnp4nagios::begin':} ->

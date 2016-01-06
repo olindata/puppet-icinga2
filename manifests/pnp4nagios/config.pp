@@ -3,6 +3,7 @@ class icinga2::pnp4nagios::config inherits icinga2::pnp4nagios {
   $monitoring_type = 'icinga'
   $log_type = 'syslog'
   $debug_lvl = 1
+  $system_date = generate('/usr/bin/date', '+%Z')
 
   file { "$httpd_path/$htpasswd_config":
     ensure  => $htpasswd_config_ensure,
@@ -34,12 +35,12 @@ class icinga2::pnp4nagios::config inherits icinga2::pnp4nagios {
     content => template('icinga2/npcd.cfg.erb'),
   }
 
-  if $manage_php_timezone == true {
-    file_line{ 'date.timezone':
-      path  => '/etc/php.ini',
-      line  => "date.timezone = Europe/Amsterdam",
-      match => "^;date.timezone.*$",
-    }
+  ini_setting { "phptimezone":
+    ensure  => present,
+    path    => '/etc/php.ini',
+    section => 'Date',
+    setting => 'date.timezone',
+    value   => $system_date,
   }
 
   exec { 'pnp_setup':
@@ -72,6 +73,5 @@ class icinga2::pnp4nagios::config inherits icinga2::pnp4nagios {
   }
 
 }
-
 
 
