@@ -18,7 +18,7 @@ class icinga2::pnp4nagios::config {
   $monitoring_type        = $icinga2::pnp4nagios::monitoring_type
   $log_type               = $icinga2::pnp4nagios::log_type
   $debug_lvl              = $icinga2::pnp4nagios::debug_lvl
-  $system_date            = generate('/usr/bin/date', '+%Z')
+  $system_date            = $icinga2::pnp4nagios::system_date 
 
   file { "$httpd_path/$htpasswd_config":
     ensure  => $htpasswd_config_ensure,
