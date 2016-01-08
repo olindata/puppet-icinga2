@@ -1,24 +1,24 @@
 class icinga2::pnp4nagios::config {
 
-  $package_name           = $icinga2::pnp4nagios::params::package_name
-  $package_ensure         = $icinga2::pnp4nagios::params::package_ensure
-  $service_name           = $icinga2::pnp4nagios::params::service_name
-  $service_ensure         = $icinga2::pnp4nagios::params::service_ensure
-  $service_enable         = $icinga2::pnp4nagios::params::service_enable
-  $service_manage         = $icinga2::pnp4nagios::params::service_manage
-  $htpasswd_config        = $icinga2::pnp4nagios::params::htpasswd_config
-  $htpasswd_user          = $icinga2::pnp4nagios::params::htpasswd_user
-  $htpasswd_group         = $icinga2::pnp4nagios::params::htpasswd_group
-  $htpasswd_config_ensure = $icinga2::pnp4nagios::params::htpasswd_config_ensure
-  $htpasswd_config_mode   = $icinga2::pnp4nagios::params::htpasswd_config_mode
-  $httpd_path             = $icinga2::pnp4nagios::params::httpd_path
-  $nagios_web_user        = $icinga2::pnp4nagios::params::nagios_web_user
-  $nagios_web_pass        = $icinga2::pnp4nagios::params::nagios_web_pass
-  $manage_pkg_dependency  = $icinga2::pnp4nagios::params::manage_pkg_dependency
-  $monitoring_type        = $icinga2::pnp4nagios::params::monitoring_type
-  $log_type               = $icinga2::pnp4nagios::params::log_type
-  $debug_lvl              = $icinga2::pnp4nagios::params::debug_lvl
-  $system_date            = generate('/usr/bin/date', '+%Z')  
+  $package_name           = $icinga2::pnp4nagios::package_name
+  $package_ensure         = $icinga2::pnp4nagios::package_ensure
+  $service_name           = $icinga2::pnp4nagios::service_name
+  $service_ensure         = $icinga2::pnp4nagios::service_ensure
+  $service_enable         = $icinga2::pnp4nagios::service_enable
+  $service_manage         = $icinga2::pnp4nagios::service_manage
+  $htpasswd_config        = $icinga2::pnp4nagios::htpasswd_config
+  $htpasswd_user          = $icinga2::pnp4nagios::htpasswd_user
+  $htpasswd_group         = $icinga2::pnp4nagios::htpasswd_group
+  $htpasswd_config_ensure = $icinga2::pnp4nagios::htpasswd_config_ensure
+  $htpasswd_config_mode   = $icinga2::pnp4nagios::htpasswd_config_mode
+  $httpd_path             = $icinga2::pnp4nagios::httpd_path
+  $nagios_web_user        = $icinga2::pnp4nagios::nagios_web_user
+  $nagios_web_pass        = $icinga2::pnp4nagios::nagios_web_pass
+  $manage_pkg_dependency  = $icinga2::pnp4nagios::manage_pkg_dependency
+  $monitoring_type        = $icinga2::pnp4nagios::monitoring_type
+  $log_type               = $icinga2::pnp4nagios::log_type
+  $debug_lvl              = $icinga2::pnp4nagios::debug_lvl
+  $system_date            = generate('/usr/bin/date', '+%Z')
 
   file { "$httpd_path/$htpasswd_config":
     ensure  => $htpasswd_config_ensure,
