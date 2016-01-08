@@ -14,6 +14,9 @@ class icinga2::pnp4nagios (
   $nagios_web_user        = $icinga2::pnp4nagios::params::nagios_web_user,
   $nagios_web_pass        = $icinga2::pnp4nagios::params::nagios_web_pass,
   $manage_pkg_dependency  = $icinga2::pnp4nagios::params::manage_pkg_dependency,
+  $monitoring_type        = $icinga2::pnp4nagios::params::monitoring_type,
+  $log_type               = $icinga2::pnp4nagios::params::log_type,
+  $debug_lvl              = $icinga2::pnp4nagios::params::debug_lvl,
 ) inherits icinga2::pnp4nagios::params {
 
   # Validation
@@ -32,6 +35,9 @@ class icinga2::pnp4nagios (
   validate_string($nagios_web_user)
   validate_string($nagios_web_pass)
   validate_bool($manage_pkg_dependency)
+  validate_string($monitoring_type)
+  validate_string($log_type)
+  validate_string($debug_lvl)
 
   anchor {'icinga2::pnp4nagios::begin':} ->
   class {'icinga2::pnp4nagios::install':} ->

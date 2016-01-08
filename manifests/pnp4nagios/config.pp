@@ -2,9 +2,6 @@ class icinga2::pnp4nagios::config {
 
   include icinga2::pnp4nagios
 
-  $monitoring_type = 'icinga'
-  $log_type = 'syslog'
-  $debug_lvl = 1
   $system_date = generate('/usr/bin/date', '+%Z')
 
   file { "$httpd_path/$htpasswd_config":

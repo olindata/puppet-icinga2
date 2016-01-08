@@ -16,6 +16,9 @@ class icinga2::pnp4nagios::params {
        $nagios_web_user        = 'nagiosadmin'
        $nagios_web_pass        = 'nagios'
        $manage_pkg_dependency  = true
+       $monitoring_type        = 'icinga'
+       $log_type               = 'syslog'
+       $debug_lvl              = '1'
      }
      default: {
        fail("Module ${module_name} is not supported on ${::osfamily}")
