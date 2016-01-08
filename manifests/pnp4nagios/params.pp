@@ -20,6 +20,7 @@ class icinga2::pnp4nagios::params {
        $log_type               = 'syslog'
        $debug_lvl              = '1'
        $system_date            = 'UTC'
+       $manage_php_timezone    = true
      }
      default: {
        fail("Module ${module_name} is not supported on ${::osfamily}")

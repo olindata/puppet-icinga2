@@ -19,6 +19,7 @@ class icinga2::pnp4nagios::config {
   $log_type               = $icinga2::pnp4nagios::log_type
   $debug_lvl              = $icinga2::pnp4nagios::debug_lvl
   $system_date            = $icinga2::pnp4nagios::system_date 
+  $manage_php_timezone    = $icinga2::pnp4nagios::manage_php_timezone
 
   file { "$httpd_path/$htpasswd_config":
     ensure  => $htpasswd_config_ensure,
@@ -44,12 +45,14 @@ class icinga2::pnp4nagios::config {
     content => template('icinga2/npcd.cfg.erb'),
   }
 
-  ini_setting { "phptimezone":
-    ensure  => present,
-    path    => '/etc/php.ini',
-    section => 'Date',
-    setting => 'date.timezone',
-    value   => $system_date,
+  if $manage_php_timezone == true { 
+    ini_setting { "phptimezone":
+      ensure  => present,
+      path    => '/etc/php.ini',
+      section => 'Date',
+      setting => 'date.timezone',
+      value   => $system_date,
+    }
   }
 
   exec { 'pnp_setup':

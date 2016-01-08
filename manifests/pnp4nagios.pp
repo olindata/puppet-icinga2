@@ -18,6 +18,7 @@ class icinga2::pnp4nagios (
   $log_type               = $icinga2::pnp4nagios::params::log_type,
   $debug_lvl              = $icinga2::pnp4nagios::params::debug_lvl,
   $system_date            = $icinga2::pnp4nagios::params::system_date,
+  $manage_php_timezone    = $icinga2::pnp4nagios::params::manage_php_timezone,
 ) inherits icinga2::pnp4nagios::params {
 
   # Validation
@@ -40,6 +41,8 @@ class icinga2::pnp4nagios (
   validate_string($log_type)
   validate_string($debug_lvl)
   validate_string($system_date)
+  validate_bool($manage_php_timezone)
+
 
   anchor {'icinga2::pnp4nagios::begin':} ->
   class {'icinga2::pnp4nagios::install':} ->
