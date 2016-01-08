@@ -33,17 +33,8 @@ class icinga2::pnp4nagios::config {
     ensure  => file,
     owner   => $htpasswd_user,
     group   => $htpasswd_group,
+    content => template('icinga2/passwd.erb'),
     notify  => Service['httpd'],
-  }
-
-  ini_subsetting { "nagiospasswd":
-    ensure  => present,
-    section           => '',
-    key_val_separator => ':',
-    path              => '/etc/nagios/passwd',
-    setting           => $nagios_web_user,
-    subsetting        => '',
-    value             => $nagios_web_pass,
   }
 
   file { '/etc/pnp4nagios/npcd.cfg':
