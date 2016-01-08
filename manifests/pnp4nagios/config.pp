@@ -81,7 +81,8 @@ class icinga2::pnp4nagios::config {
     target  => '/usr/share/icingaweb2/modules/pnp',
   }
 
-  file { ['/var/log/pnp4nagios/','/var/lib/pnp4nagios/']:
+  file { ['/var/log/pnp4nagios','/var/lib/pnp4nagios']:
+    ensure  => 'directory',
     owner   => 'icinga',
     group   => 'icinga',
     recurse => true,
