@@ -36,10 +36,14 @@ class icinga2::pnp4nagios::config {
     notify  => Service['httpd'],
   }
 
-  exec { 'htpasswd':
-    path        => '/bin:/usr/bin:/sbin:/usr/sbin',
-    command     => "htpasswd -db /etc/nagios/passwd $nagios_web_user $nagios_web_pass",
-    subscribe   => File["/etc/nagios/passwd"],
+  ini_subsetting { "nagiospasswd":
+    ensure  => present,
+    section           => '',
+    key_val_separator => ':',
+    path              => '/etc/nagios/passwd',
+    setting           => $nagios_web_user,
+    subsetting        => '',
+    value             => $nagios_web_pass,
   }
 
   file { '/etc/pnp4nagios/npcd.cfg':
