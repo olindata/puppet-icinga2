@@ -137,6 +137,7 @@ Other availabe parameters are:
    This parameter manages the actual php timezone. Default [UTC]
 
 
+
 ####`icinga2::conf`
 
 This defined type creates custom files in the `/etc/icinga2/conf.d` directory.
