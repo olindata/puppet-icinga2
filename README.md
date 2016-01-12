@@ -104,6 +104,51 @@ CentOS 5 provides PostgreSQL 9.1 by default, which was end-of-life'd in 2010. Wi
 
 ###General Usage
 
+####`icinga2::pnp4nagios`
+
+This define type 'icinga2::pnp4nagios' is used for adding graph to icinga server monitors. The systax for usage is shown below.
+
+Example usage: The basic setup for graphing in icinga server.
+
+<pre>
+include icinga2::pnp4nagios
+</pre>
+
+The advance setup for graphing in icinga server using additional parameter is shown below.
+
+<pre>
+class { 'icinga2::pnp4nagios':
+  nagios_web_user  => 'nagiosadmin',
+  nagios_web_pass  => '$apr1$B7rK7gU/$2St1Oevw0d/440oGeyjeR1',
+  ...
+}
+</pre>
+
+Other availabe parameters are:
+
+* `service_enable`
+   This parameter enables the npcd and pnp4nagios service. Default [True]
+
+* `service_manage`
+   This parameter manages the npcd and pnp4nagios service by puppet. Default [True]
+   
+* `manage_pkg_dependency`
+   This parameter install the package unzip and wget as  a dependency for pnp4nagios. Default [True]
+
+* `nagios_web_user`
+   This parameter is used for nagios web dashboard user. Default User [nagiosadmin]
+
+* `nagios_web_pass`
+   This parameter is used for nagios web dashboard password. Default Password [nagios]
+
+* `manage_php_timezone`
+   This parameter manages the php.ini config date.timezone variable. Default [True]
+
+* `system_date`
+   This parameter manages the actual php timezone. Default [UTC]
+
+
+
 ####`icinga2::conf`
 
 This defined type creates custom files in the `/etc/icinga2/conf.d` directory.
