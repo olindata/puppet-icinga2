@@ -2,7 +2,7 @@
 #
 # This is a defined type for Icinga 2 apply objects that create IcingaStatusWriter
 # See the following Icinga 2 doc page for more info:
-# http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/configuring-icinga2#objecttype-checkercomponent
+# http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/object-types#objecttype-checkercomponent
 #
 # === Parameters
 #
@@ -39,6 +39,6 @@ define icinga2::object::icingastatuswriter (
     group   => $target_file_group,
     mode    => $target_file_mode,
     content => template('icinga2/object_icingastatuswriter.conf.erb'),
-    notify  => Service['icinga2'],
+    notify  => Class['::icinga2::service'],
   }
 }

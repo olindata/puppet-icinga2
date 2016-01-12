@@ -1,0 +1,13 @@
+<%= scope.function_template(['icinga2/_header.erb']) -%>
+
+object Endpoint "<%= @name %>" {
+  <%- if @host -%>
+  host = <%= scope.function_icinga2_config_value([@host]) %>
+  <%- end -%>
+  <%- if @port -%>
+  port = <%= scope.function_icinga2_config_value([@port]) %>
+  <%- end -%>
+  <%- if @log_duration -%>
+  log_duration = <%= @log_duration -%>
+  <%- end -%>
+}

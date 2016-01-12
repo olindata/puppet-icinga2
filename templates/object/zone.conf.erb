@@ -1,0 +1,13 @@
+<%= scope.function_template(['icinga2/_header.erb']) -%>
+
+object Zone "<%= @name %>" {
+  <%- if @parent-%>
+  parent = <%= scope.function_icinga2_config_value([@parent]) %>
+  <%- end -%>
+  <%- if @global-%>
+  global = <%= @global%>
+  <%- end -%>
+  <%- if @_endpoints -%>
+  endpoints = <%= scope.function_icinga2_config_value([@_endpoints]) %>
+  <%- end -%>
+}

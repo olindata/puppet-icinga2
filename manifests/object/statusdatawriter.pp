@@ -2,7 +2,7 @@
 #
 # This is a defined type for Icinga 2 apply objects that create StatusDataWriter
 # See the following Icinga 2 doc page for more info:
-# http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/configuring-icinga2#objecttype-statusdatawriter
+# http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/object-types#objecttype-statusdatawriter
 #
 # === Parameters
 #
@@ -53,13 +53,13 @@ define icinga2::object::statusdatawriter (
       mode    => $target_file_mode,
       content => template('icinga2/object_statusdatawriter.conf.erb'),
       #...notify the Icinga 2 daemon so it can restart and pick up changes made to this config file...
-      notify  => Service['icinga2'],
+      notify  => Class['::icinga2::service'],
     }
 
   }
-  #...otherwise, use the same file resource but without a notify => parameter: 
+  #...otherwise, use the same file resource but without a notify => parameter:
   else {
-  
+
     file { "${target_dir}/${target_file_name}":
       ensure  => $target_file_ensure,
       owner   => $target_file_owner,
@@ -67,7 +67,7 @@ define icinga2::object::statusdatawriter (
       mode    => $target_file_mode,
       content => template('icinga2/object_statusdatawriter.conf.erb'),
     }
-  
+
   }
 
 }
