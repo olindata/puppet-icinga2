@@ -95,7 +95,7 @@ CentOS 5 provides PostgreSQL 9.1 by default, which was end-of-life'd in 2010. Wi
 
 ####`icinga2::pnp4nagios`
 
-This define type 'icinga2::pnp4nagios' is used for adding graph to icinga server monitors. The systax for usage is shown below.
+This defined type 'icinga2::pnp4nagios' is used for adding graphs to icinga server monitor. The syntax for usage is shown below.
 
 Example usage: The basic setup for graphing in icinga server.
 
